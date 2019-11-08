@@ -1,4 +1,4 @@
-//página de cadastro
+//cadastro
 
 const mongoose = require('mongoose');
 
@@ -12,4 +12,4 @@ const SpotSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Spot', UserSchema);
+module.exports = mongoose.model('Spot', SpotSchema);

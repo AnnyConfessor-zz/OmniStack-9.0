@@ -5,12 +5,14 @@ module.exports = {
     async store(req, res){
         const {name} = req.body;
         const {email} = req.body;
-        const {age} = req.body;
 
-        let user =  await User.findOne({ email });
+        let user =  await User.findOne({ email }); //acho que aqui é find
 
         if(!user){
-            user = await User.create({ email }); //tem que criar nome e idade tbm
+            user = await User.create({ 
+                name,
+                email
+             }); //tem que criar nome e idade tbm
         }
 
         return res.json(user);
