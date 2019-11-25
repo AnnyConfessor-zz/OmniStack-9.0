@@ -1,6 +1,45 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { SafeAreaView, Text, Image, AsyncStorage, StyleSheet, ScrollView} from 'react-native';
+
+import SpotList from '../components/SpotList';
+
+import airbnblogo from '../assets/airbnblogo.png';
 
 export default function List() {
-    return <View></View>
+    const [cidades, setCidades] = useState([]);
+
+    useEffect(() => {
+        AsyncStorage.getItem('cidades').then(storagedCidades => {
+            const cidadesArray = storagedCidades.split(',').map(cidade => cidade.trim());
+
+            setCidades(cidadesArray);
+        })
+    }, []);
+
+    return(
+        <SafeAreaView style={styles.container}>
+            <Image style={styles.imageLogo}
+            source={airbnblogo} />
+
+            <ScrollView>
+            {cidades.map(cidade => (
+                <SpotList key={cidade} cidade={cidade}/>
+            ))}
+            </ScrollView>
+        </SafeAreaView>
+    )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+
+    imageLogo: {
+        width: 100,
+        height: 100,
+        resizeMode: "contain",
+        alignSelf: "center",
+        marginTop: 40,
+    }
+})
