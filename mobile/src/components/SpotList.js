@@ -4,23 +4,21 @@ import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity} from 'react-
 import api from '../services/api';
 
 export default function SpotList({ cidade }) {
+
     const [spots, setSpots] = useState([])
 
     useEffect(() => {
-        async function loadspots() {
+        async function loadSpots() {
 
-            /* essa request não está indo 
-            terminar a API primeiro*/
-            // const response = await api.get('/spots', {
-            //      aqui era 'tech1 
-            //     params: { cidade }
-            // })
+            const response = await api.get('/spots', {
+                params: { cidade }
+            })
 
-            // console.log(response.data);
-            // setSpots(response.data);
+            console.log(response.data);
+            setSpots(response.data);
         }
 
-        loadspots();
+        loadSpots();
     }, []);
 
     return (
@@ -35,11 +33,11 @@ export default function SpotList({ cidade }) {
                 showsHorizontalScrollIndicator={false}
                 renderItem={( item )=> (
                     <View style={styles.listItem}>
-                        {/* <Image style={styles.thumbnail}
+                        <Image style={styles.thumbnail}
                         source={{ uri: item.thumbnail_url}}
                         />
                         <Text style={styles.company}>{item.company}</Text>
-                        <Text style={styles.price}>{item.price ? `R$${item.price}/dia` : 'GRATUITO'}</Text> */}
+                        <Text style={styles.price}>{item.price ? `R$${item.price}/dia` : 'GRATUITO'}</Text>
 
                         <TouchableOpacity onPress={() => {}} style={styles.button}>
                             <Text style={styles.buttonText}>Solicitar Reserva</Text>

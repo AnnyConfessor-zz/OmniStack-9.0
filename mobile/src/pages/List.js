@@ -23,7 +23,7 @@ export default function List() {
 
             <ScrollView>
             {cidades.map(cidade => (
-                <SpotList key={cidade} cidade={cidade}/>
+                <SpotList cidade={cidade} key={cidade} />
             ))}
             </ScrollView>
         </SafeAreaView>

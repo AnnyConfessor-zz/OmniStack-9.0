@@ -9,14 +9,14 @@ export default function Login({ navigation }) {
     const [email, setEmail] = useState('');
     const [cidades, setCidades] = useState('');
 
-    useEffect(() => {
-        {/* Confere se já tem o usuário e não volta para a tela de login */}
-        AsyncStorage.getItem('user').then(user => {
-            if (user) {
-                navigation.navigate('List')
-            }
-        })
-    }, [])
+    // useEffect(() => {
+    //     {/* Confere se já tem o usuário e não volta para a tela de login */}
+    //     AsyncStorage.getItem('user').then(user => {
+    //         if (user) {
+    //             navigation.navigate('List')
+    //         }
+    //     })
+    // }, [])
 
     async function handleSubmit() {
         //email, cidades
